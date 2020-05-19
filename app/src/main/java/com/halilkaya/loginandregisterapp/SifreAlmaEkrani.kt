@@ -8,6 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseAuth
 import com.halilkaya.loginandregisterapp.Fragments.MyDialogFragment
 import kotlinx.android.synthetic.main.activity_sifre_alma_ekrani.*
 
@@ -23,7 +26,7 @@ class SifreAlmaEkrani : AppCompatActivity(),MyListener {
 
             if(etMail.text.isNotEmpty()){
 
-                //mail gonderecek
+                sifreResetMail(etMail.text.toString())
 
 
             }else{
@@ -33,17 +36,55 @@ class SifreAlmaEkrani : AppCompatActivity(),MyListener {
 
             }
 
-
-
-
-
         }
+
+    }
+
+    fun sifreResetMail(mail:String){
+
+        progresbarGoster()
+
+        FirebaseAuth.getInstance().sendPasswordResetEmail(mail)
+            .addOnCompleteListener(object : OnCompleteListener<Void>{
+
+                override fun onComplete(p0: Task<Void>) {
+
+                    progresbarGizle()
+                    if(p0.isSuccessful){
+
+                        var myDialogFragmentForPassword = MyDialogFragmentForPassword()
+                        myDialogFragmentForPassword.show(supportFragmentManager,"frag")
+
+                    }else{
+
+                        var myDialogFragment = MyDialogFragment()
+                        myDialogFragment.setAciklama("bir hata oldu sonra tekrar deneyiniz")
+                        myDialogFragment.show(supportFragmentManager,"frag")
+
+                    }
+
+                }
+
+            })
+
 
 
     }
 
+
+
+
     override fun kapat() {
         finish()
+    }
+
+
+    fun progresbarGoster(){
+        pbSifreAlmaEkrani.visibility = View.VISIBLE
+    }
+
+    fun progresbarGizle(){
+        pbSifreAlmaEkrani.visibility = View.INVISIBLE
     }
 
 
@@ -67,7 +108,7 @@ class MyDialogFragmentForPassword() : DialogFragment(){
 
         tvKapatmaBtn.setOnClickListener {
             dismiss()
-            var intent = Intent(activity,AcilisEkrani::class.java)
+            var intent = Intent(activity,GirisEkrani::class.java)
             startActivity(intent)
             mListener.kapat()
 
