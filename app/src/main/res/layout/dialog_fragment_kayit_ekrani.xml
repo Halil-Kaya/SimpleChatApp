@@ -7,13 +7,13 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/tvAciklama"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:layout_width="191dp"
+        android:layout_height="87dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:text="Aciklama"
+        android:text="mailnizi onaylayın sonra maceraya başlayın"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,10 +25,11 @@
         android:layout_height="37dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
-        android:text="Anladım"
+        android:text="GOT IT"
         android:textColor="@android:color/holo_blue_bright"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tvAciklama"
-        app:layout_constraintTop_toBottomOf="@+id/tvAciklama" />
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

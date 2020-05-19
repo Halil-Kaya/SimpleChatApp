@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "770398489042",
+    "firebase_url": "https://fir-kullaniciislemleri-729af.firebaseio.com",
+    "project_id": "fir-kullaniciislemleri-729af",
+    "storage_bucket": "fir-kullaniciislemleri-729af.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:770398489042:android:cf1032ba4dc504de60600b",
+        "android_client_info": {
+          "package_name": "com.halilkaya.firebaseauthentication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "770398489042-v6jhrbvv0l02cvpcuiec5v4mv6udvl01.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2W_lB74OPcVuhpkEgQcbsOqWeoFewZE0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "770398489042-v6jhrbvv0l02cvpcuiec5v4mv6udvl01.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:770398489042:android:b068fa1d5a1f88e760600b",
+        "android_client_info": {
+          "package_name": "com.halilkaya.loginandregisterapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "770398489042-v6jhrbvv0l02cvpcuiec5v4mv6udvl01.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2W_lB74OPcVuhpkEgQcbsOqWeoFewZE0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "770398489042-v6jhrbvv0l02cvpcuiec5v4mv6udvl01.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

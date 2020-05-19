@@ -25,12 +25,17 @@ android {
 
 
 }
-
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 
 dependencies {
     compile('com.github.thekhaeng:pushdown-anim-click:1.1.1') {
         exclude group: 'com.android.support'
     }
+    //firebase implementation
+    implementation 'com.google.firebase:firebase-analytics:17.2.2'
+    implementation 'com.google.firebase:firebase-auth-ktx:19.3.1'
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'

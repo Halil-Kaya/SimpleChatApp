@@ -67,7 +67,7 @@ class MyDialogFragmentForPassword() : DialogFragment(){
 
         tvKapatmaBtn.setOnClickListener {
             dismiss()
-            var intent = Intent(activity,acilisEkrani::class.java)
+            var intent = Intent(activity,AcilisEkrani::class.java)
             startActivity(intent)
             mListener.kapat()
 

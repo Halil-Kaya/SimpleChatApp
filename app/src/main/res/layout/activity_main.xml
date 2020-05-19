@@ -8,5 +8,29 @@
     tools:context=".MainActivity">
 
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="346dp"
+        android:layout_height="206dp"
+        android:layout_marginTop="68dp"
+        android:text="Tebrikler Giriş Yapmayi başarabildin"
+        android:textColor="@android:color/white"
+        android:gravity="center"
+        android:textSize="32sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/btnCikisYap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="136dp"
+        android:text="çıkış yap"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 </androidx.constraintlayout.widget.ConstraintLayout>

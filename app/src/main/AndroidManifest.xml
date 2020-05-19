@@ -12,7 +12,7 @@
         <activity android:name=".SifreAlmaEkrani"></activity>
         <activity android:name=".KayitEkrani" />
         <activity android:name=".GirisEkrani" />
-        <activity android:name=".acilisEkrani">
+        <activity android:name=".AcilisEkrani">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
