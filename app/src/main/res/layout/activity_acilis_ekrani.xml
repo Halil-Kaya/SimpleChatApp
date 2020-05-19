@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context=".acilisEkrani">
+
+
+    <Button
+        android:id="@+id/btnGirisYap"
+        android:layout_width="156dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="492dp"
+        android:text="Giriş Yap"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnKaydol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kaydol"
+        app:layout_constraintEnd_toEndOf="@+id/btnGirisYap"
+        app:layout_constraintStart_toStartOf="@+id/btnGirisYap"
+        app:layout_constraintTop_toBottomOf="@+id/btnGirisYap" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
