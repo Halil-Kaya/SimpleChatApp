@@ -3,17 +3,24 @@ package com.halilkaya.loginandregisterapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.DialogFragment
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.ktx.Firebase
 import com.halilkaya.loginandregisterapp.Fragments.MyDialogFragment
 import kotlinx.android.synthetic.main.activity_giris_ekrani.*
+import kotlinx.android.synthetic.main.dialog_fragment_kayit_ekrani.*
 
 
-class GirisEkrani : AppCompatActivity() {
+class GirisEkrani : AppCompatActivity(),MyListenerGirisEkrani {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,8 +78,10 @@ class GirisEkrani : AppCompatActivity() {
                             finish()
 
                         }else{
-                            myDialogFragment.setAciklama("mailinizi onaylayın")
-                            myDialogFragment.show(supportFragmentManager,"frag")
+
+                            var myDialogFragmentGirisEkrani = MyDialogFragmentGirisEkrani()
+                            myDialogFragmentGirisEkrani.show(supportFragmentManager,"frag")
+
                         }
 
 
@@ -96,6 +105,61 @@ class GirisEkrani : AppCompatActivity() {
 
     }
 
+
+    override fun mailiTekrarGonder() {
+
+        progresbarGoster()
+
+        FirebaseAuth.getInstance().signInWithEmailAndPassword(etMail.text.toString(),etSifre.text.toString())
+            .addOnCompleteListener(object : OnCompleteListener<AuthResult>{
+
+                override fun onComplete(p0: Task<AuthResult>) {
+                    if(p0.isSuccessful){
+
+                        mailGonder(p0.result?.user)
+
+                    }else{
+                        progresbarGizle()
+                        Toast.makeText(this@GirisEkrani,"bir hata oldu",Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+            })
+
+    }
+
+    fun mailGonder(kullanici:FirebaseUser?){
+
+        var myDialogFragment = MyDialogFragment()
+
+        if(kullanici != null){
+
+            kullanici.sendEmailVerification()
+                .addOnCompleteListener(object : OnCompleteListener<Void>{
+
+                    override fun onComplete(p0: Task<Void>) {
+
+                        progresbarGizle()
+                        if(p0.isSuccessful){
+                            FirebaseAuth.getInstance().signOut()
+                            Toast.makeText(this@GirisEkrani,"mailinizi kontrol edin",Toast.LENGTH_SHORT).show()
+
+                        }else{
+
+                            myDialogFragment.setAciklama(p0.exception?.message+"")
+                            myDialogFragment.show(supportFragmentManager,"frag")
+
+                        }
+
+                    }
+
+                })
+
+
+        }
+    }
+
+
     fun progresbarGizle(){
         pbGirisEkrani.visibility = View.INVISIBLE
     }
@@ -103,4 +167,61 @@ class GirisEkrani : AppCompatActivity() {
         pbGirisEkrani.visibility = View.VISIBLE
     }
 
+
+
 }
+
+
+interface MyListenerGirisEkrani{
+    fun mailiTekrarGonder()
+}
+
+
+
+class MyDialogFragmentGirisEkrani() : DialogFragment(){
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+        var view = inflater.inflate(R.layout.dialog_fragment_giris_ekrani_mail,container,false)
+
+        var myListenerGirisEkrani = activity as MyListenerGirisEkrani
+
+        var tvKapatmaButonu = view.findViewById<TextView>(R.id.tvKapatmaButonu)
+        tvKapatmaButonu.setOnClickListener {
+            dismiss()
+        }
+
+        var tvOnaylamaMailiniTekrarGonder = view.findViewById<TextView>(R.id.tvOnaylamaMailiniTekrarGonder)
+        tvOnaylamaMailiniTekrarGonder.setOnClickListener {
+
+            myListenerGirisEkrani.mailiTekrarGonder()
+            dismiss()
+
+        }
+
+
+        return view
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
