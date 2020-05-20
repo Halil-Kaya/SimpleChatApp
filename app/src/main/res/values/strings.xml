@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">LoginAndRegisterApp</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="intro_text">Swipe edge to exit the map.</string>
+    <string name="facebook_app_id">3288623451170692</string>
+    <string name="fb_login_protocol_scheme">fb3288623451170692</string>
 </resources>
