@@ -8,8 +8,8 @@
     tools:context=".HesapAyarlari">
 
     <EditText
-        android:id="@+id/editText"
-        android:layout_width="160dp"
+        android:id="@+id/etKullaniciAdi"
+        android:layout_width="190dp"
         android:layout_height="45dp"
 
         android:layout_marginStart="16dp"
@@ -19,14 +19,14 @@
         android:inputType="textPersonName"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
-        android:textSize="16sp"
+        android:textSize="15sp"
         app:layout_constraintStart_toEndOf="@+id/imageView6"
         app:layout_constraintTop_toTopOf="parent" />
 
 
     <EditText
-        android:id="@+id/editText2"
-        android:layout_width="160dp"
+        android:id="@+id/etTelefonNumarasi"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
 
@@ -35,37 +35,38 @@
         android:inputType="number"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/editText"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/etKullaniciAdi"
+        app:layout_constraintTop_toBottomOf="@+id/etKullaniciAdi" />
 
     <EditText
-        android:id="@+id/editText3"
-        android:layout_width="160dp"
+        android:id="@+id/etMail"
+        android:layout_width="190dp"
         android:layout_height="45dp"
         android:layout_marginTop="16dp"
+        android:editable="false"
         android:ems="20"
-
         android:hint="mail"
-        android:inputType="textPersonName"
+        android:inputType="none"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/editText2"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/etTelefonNumarasi"
+        app:layout_constraintTop_toBottomOf="@+id/etTelefonNumarasi" />
 
     <EditText
-        android:id="@+id/editText4"
-        android:layout_width="160dp"
+        android:id="@+id/etSifre"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Sifre"
+        android:textSize="15sp"
+        android:inputType="textPassword"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
-        android:inputType="textPassword"
-        app:layout_constraintStart_toStartOf="@+id/editText3"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintStart_toStartOf="@+id/etMail"
+        app:layout_constraintTop_toBottomOf="@+id/etMail" />
 
     <TextView
         android:id="@+id/tvMailSifreGuncelle"
@@ -78,10 +79,10 @@
         android:textColor="@android:color/holo_blue_bright"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+        app:layout_constraintTop_toBottomOf="@+id/etSifre" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/tvSifremiUnuttum"
         android:layout_width="171dp"
         android:layout_height="33dp"
         android:layout_marginStart="16dp"
@@ -94,12 +95,12 @@
         app:layout_constraintTop_toBottomOf="@+id/tvMailSifreGuncelle" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnKaydet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:text="Değişikliği Kaydet"
-        app:layout_constraintBottom_toBottomOf="@+id/textView5"
+        app:layout_constraintBottom_toBottomOf="@+id/tvSifremiUnuttum"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tvMailSifreGuncelle" />
 
@@ -108,21 +109,21 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/editText"
+        app:layout_constraintBottom_toBottomOf="@+id/etKullaniciAdi"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editText"
+        app:layout_constraintTop_toTopOf="@+id/etKullaniciAdi"
         app:srcCompat="@drawable/user" />
 
     <ImageView
         android:id="@+id/imageView7"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/editText4"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/etSifre"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editText2"
-        app:layout_constraintTop_toTopOf="@+id/editText"
+        app:layout_constraintStart_toEndOf="@+id/etTelefonNumarasi"
+        app:layout_constraintTop_toTopOf="@+id/etKullaniciAdi"
         app:srcCompat="@drawable/ic_launcher_foreground" />
 
     <ImageView
@@ -130,9 +131,9 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/editText2"
+        app:layout_constraintBottom_toBottomOf="@+id/etTelefonNumarasi"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editText2"
+        app:layout_constraintTop_toTopOf="@+id/etTelefonNumarasi"
         app:srcCompat="@drawable/telefon" />
 
     <ImageView
@@ -140,9 +141,9 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/editText3"
+        app:layout_constraintBottom_toBottomOf="@+id/etMail"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editText3"
+        app:layout_constraintTop_toTopOf="@+id/etMail"
         app:srcCompat="@drawable/mail" />
 
     <ImageView
@@ -150,9 +151,9 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/editText4"
+        app:layout_constraintBottom_toBottomOf="@+id/etSifre"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editText4"
+        app:layout_constraintTop_toTopOf="@+id/etSifre"
         app:srcCompat="@drawable/ic_launcher_foreground" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -162,33 +163,34 @@
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5">
+        app:layout_constraintTop_toBottomOf="@+id/tvSifremiUnuttum">
 
         <EditText
-            android:id="@+id/editText7"
+            android:id="@+id/etYeniSifre"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="Yeni Sifre"
+            android:textSize="15sp"
             android:inputType="textPassword"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white"
             app:layout_constraintStart_toEndOf="@+id/imageView16"
-            app:layout_constraintTop_toBottomOf="@+id/editText6" />
+            app:layout_constraintTop_toBottomOf="@+id/etYeniMail" />
 
         <ImageView
             android:id="@+id/imageView16"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            app:layout_constraintBottom_toBottomOf="@+id/editText7"
+            app:layout_constraintBottom_toBottomOf="@+id/etYeniSifre"
             app:layout_constraintStart_toStartOf="@+id/imageView15"
-            app:layout_constraintTop_toTopOf="@+id/editText7"
+            app:layout_constraintTop_toTopOf="@+id/etYeniSifre"
             app:srcCompat="@drawable/ic_launcher_foreground" />
 
         <EditText
-            android:id="@+id/editText6"
+            android:id="@+id/etYeniMail"
             android:layout_width="200dp"
             android:layout_height="45dp"
 
@@ -199,7 +201,7 @@
             android:inputType="textPersonName"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white"
-            android:textSize="16sp"
+            android:textSize="15sp"
             app:layout_constraintStart_toEndOf="@+id/imageView15"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -208,30 +210,41 @@
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_marginStart="24dp"
-            app:layout_constraintBottom_toBottomOf="@+id/editText6"
+            app:layout_constraintBottom_toBottomOf="@+id/etYeniMail"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/editText6"
+            app:layout_constraintTop_toTopOf="@+id/etYeniMail"
             app:srcCompat="@drawable/mail" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/btnMailGuncelle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:text="Guncelle"
-            app:layout_constraintBottom_toBottomOf="@+id/editText6"
+            app:layout_constraintBottom_toBottomOf="@+id/etYeniMail"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/editText6" />
+            app:layout_constraintTop_toTopOf="@+id/etYeniMail" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/btnSifreGuncelle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:text="Degistir"
-            app:layout_constraintBottom_toBottomOf="@+id/editText7"
+            app:layout_constraintBottom_toBottomOf="@+id/etYeniSifre"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/editText7" />
+            app:layout_constraintTop_toTopOf="@+id/etYeniSifre" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ProgressBar
+        android:id="@+id/pbHesapAyarlari"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/gizliConstrainLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

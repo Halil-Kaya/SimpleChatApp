@@ -109,7 +109,6 @@ class KayitEkrani : AppCompatActivity(),MyListenerKayitEkrani {
                     override fun onComplete(p0: Task<Void>) {
 
                         if(p0.isSuccessful){
-                            FirebaseAuth.getInstance().signOut()
                             var myDialogFragmentKayitEkrani = MyDialogFragmentKayitEkrani()
                             myDialogFragmentKayitEkrani.show(supportFragmentManager,"frag")
 
@@ -146,6 +145,7 @@ class KayitEkrani : AppCompatActivity(),MyListenerKayitEkrani {
     override fun kapat() {
         var intent = Intent(this@KayitEkrani,GirisEkrani::class.java)
         startActivity(intent)
+        FirebaseAuth.getInstance().signOut()
         finish()
     }
 
