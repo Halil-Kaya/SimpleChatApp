@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import com.facebook.*
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
@@ -18,13 +19,45 @@ import com.google.firebase.ktx.Firebase
 import com.halilkaya.loginandregisterapp.Fragments.MyDialogFragment
 import kotlinx.android.synthetic.main.activity_giris_ekrani.*
 import kotlinx.android.synthetic.main.dialog_fragment_kayit_ekrani.*
+import com.facebook.appevents.AppEventsLogger
+import com.facebook.login.LoginResult
+import com.google.firebase.auth.FacebookAuthProvider
 
 
 class GirisEkrani : AppCompatActivity(),MyListenerGirisEkrani {
 
+    var callbackManager:CallbackManager? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_giris_ekrani)
+        FacebookSdk.sdkInitialize(applicationContext)
+
+        callbackManager = CallbackManager.Factory.create()
+
+
+
+        
+        login_button.registerCallback(callbackManager,object : FacebookCallback<LoginResult>{
+
+
+            override fun onSuccess(result: LoginResult?) {
+                progresbarGoster()
+                handleFacebookAccessToken(result?.accessToken)
+
+
+            }
+
+            override fun onCancel() {
+                println("onCancel")
+            }
+
+            override fun onError(error: FacebookException?) {
+                println("onError")
+            }
+
+        })
+
 
         tvSifreUnuttum.setOnClickListener {
 
@@ -33,6 +66,13 @@ class GirisEkrani : AppCompatActivity(),MyListenerGirisEkrani {
 
         }
 
+        tvHesapVar.setOnClickListener {
+
+            var intent = Intent(this,KayitEkrani::class.java)
+            startActivity(intent)
+            finish()
+
+        }
 
 
         btnGirisYap.setOnClickListener {
@@ -49,14 +89,50 @@ class GirisEkrani : AppCompatActivity(),MyListenerGirisEkrani {
             }else{
 
                 myDialogFragment.setAciklama("bilgileri giriniz")
-                myDialogFragment.show(supportFragmentManager,"frag")
+                myDialogFragment.show(supportFragmentManager,"frag-BilgileriGiriniz")
 
 
             }
 
-
-
         }
+
+        btnKayitli.setOnClickListener {
+            Toast.makeText(this,FirebaseAuth.getInstance().currentUser?.email+"",Toast.LENGTH_LONG).show()
+            var intent = Intent(this@GirisEkrani, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+
+
+    }
+
+
+    fun handleFacebookAccessToken(result:AccessToken?){
+
+        var credential = FacebookAuthProvider.getCredential(result?.token!!)
+
+        FirebaseAuth.getInstance().signInWithCredential(credential)
+            .addOnCompleteListener(object : OnCompleteListener<AuthResult>{
+
+
+                override fun onComplete(p0: Task<AuthResult>) {
+                    progresbarGizle()
+                    if(p0.isSuccessful){
+                        var intent = Intent(this@GirisEkrani, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+
+
+                    }else{
+
+                    }
+
+                }
+
+            })
+
+
 
     }
 
@@ -73,14 +149,14 @@ class GirisEkrani : AppCompatActivity(),MyListenerGirisEkrani {
                     if(p0.isSuccessful){
 
                         if(FirebaseAuth.getInstance().currentUser?.isEmailVerified == true){
-                            var intent = Intent(this@GirisEkrani, MainActivity::class.java)
-                            startActivity(intent)
-                            finish()
+                                var intent = Intent(this@GirisEkrani, MainActivity::class.java)
+                                startActivity(intent)
+                                finish()
 
                         }else{
 
                             var myDialogFragmentGirisEkrani = MyDialogFragmentGirisEkrani()
-                            myDialogFragmentGirisEkrani.show(supportFragmentManager,"frag")
+                            myDialogFragmentGirisEkrani.show(supportFragmentManager,"frag-mailIsNotVerified")
 
                         }
 
@@ -89,7 +165,7 @@ class GirisEkrani : AppCompatActivity(),MyListenerGirisEkrani {
                     }else{
 
                         myDialogFragment.setAciklama(p0.exception?.message+"")
-                        myDialogFragment.show(supportFragmentManager,"frag")
+                        myDialogFragment.show(supportFragmentManager,"frag-Error")
 
                         etSifre.setText("")
 
@@ -104,6 +180,15 @@ class GirisEkrani : AppCompatActivity(),MyListenerGirisEkrani {
 
 
     }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        callbackManager?.onActivityResult(requestCode,resultCode,data)
+
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
 
 
     override fun mailiTekrarGonder() {

@@ -47,14 +47,11 @@ class AcilisEkrani : AppCompatActivity() {
                 var kullanici = p0.currentUser
                 if(kullanici != null){
 
-                    if(kullanici.isEmailVerified) {
-                        var intent = Intent(this@AcilisEkrani, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    }else{
 
+                    var intent = Intent(this@AcilisEkrani, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
 
-                    }
 
                 }
 

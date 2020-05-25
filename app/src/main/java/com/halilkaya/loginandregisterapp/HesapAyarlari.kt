@@ -310,6 +310,9 @@ class HesapAyarlari : AppCompatActivity(),MyListenerHesapAyarlari {
         gizliConstrainLayout.visibility = View.VISIBLE
     }
 
+
+
+
 }
 
 

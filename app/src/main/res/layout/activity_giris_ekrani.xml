@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:background="@drawable/background"
     tools:context=".GirisEkrani">
 
 
@@ -74,14 +74,14 @@
         android:id="@+id/tvSifreUnuttum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="8dp"
         android:text="Şifreni Mi Unuttun?"
         android:textColor="@android:color/holo_blue_bright"
         android:textSize="28sp"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnGirisYap" />
+        app:layout_constraintTop_toBottomOf="@+id/login_button" />
 
     <Button
         android:id="@+id/btnGirisYap"
@@ -104,5 +104,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/tvHesapVar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Zaten Bir Hesabın Var Mı?"
+        android:textColor="@android:color/holo_blue_bright"
+        android:textSize="28sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSifreUnuttum" />
+
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/login_button"
+        android:layout_width="196dp"
+        android:layout_height="73dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnGirisYap" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
