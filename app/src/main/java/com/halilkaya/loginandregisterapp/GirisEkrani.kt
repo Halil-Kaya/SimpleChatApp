@@ -96,13 +96,7 @@ class GirisEkrani : AppCompatActivity(),MyListenerGirisEkrani {
 
         }
 
-        btnKayitli.setOnClickListener {
-            Toast.makeText(this,FirebaseAuth.getInstance().currentUser?.email+"",Toast.LENGTH_LONG).show()
-            var intent = Intent(this@GirisEkrani, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
+     
 
 
     }
