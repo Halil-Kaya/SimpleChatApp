@@ -109,7 +109,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Zaten Bir Hesabın Var Mı?"
+        android:text="Hesabın Yok Mu?"
         android:textColor="@android:color/holo_blue_bright"
         android:textSize="28sp"
         android:textStyle="bold|italic"

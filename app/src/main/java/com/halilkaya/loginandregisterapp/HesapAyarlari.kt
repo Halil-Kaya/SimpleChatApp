@@ -15,7 +15,12 @@ import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.halilkaya.loginandregisterapp.Fragments.MyDialogFragment
+import com.halilkaya.loginandregisterapp.Model.Kullanici
 import kotlinx.android.synthetic.main.activity_hesap_ayarlari.*
 import kotlinx.android.synthetic.main.dialog_fragment_design.*
 import java.security.AuthProvider
@@ -93,15 +98,15 @@ class HesapAyarlari : AppCompatActivity(),MyListenerHesapAyarlari {
 
                                 }
 
-                                /*
-                                if(!etTelefonNumarasi.text.equals(/*telefon sorgusu*/)){
-                                    //telefonu guncelliyecem
-                                }*/
+
+                                if(etTelefonNumarasi.text.isNotEmpty()){
+                                    updateTelefonNumarasi()
+                                }
 
 
                             }else{
                                 progresbarGizle()
-                                myDialogFragment.setAciklama("sifreniz yanlis")
+                                myDialogFragment.setAciklama("sifreniz yanlis: ${p0.exception?.message}")
                                 myDialogFragment.show(supportFragmentManager,"sifreYanlis")
 
 
@@ -251,6 +256,30 @@ class HesapAyarlari : AppCompatActivity(),MyListenerHesapAyarlari {
 
     }
 
+    fun updateTelefonNumarasi(){
+
+        FirebaseDatabase.getInstance().reference
+            .child("kullanici")
+            .child(kullanici.uid)
+            .child("telefon")
+            .setValue(etTelefonNumarasi.text.toString())
+            .addOnCompleteListener(object : OnCompleteListener<Void>{
+
+                override fun onComplete(p0: Task<Void>) {
+                    if(p0.isSuccessful){
+
+                    }else{
+
+                        myDialogFragment.setAciklama("telefonunuzu guncellenirken bir hata oldu")
+                        myDialogFragment.show(supportFragmentManager,"frag-TelErrorDatabes")
+                    }
+                }
+
+            })
+
+
+    }
+
     fun updateKullaniciAdi(){
 
         var bilgileriGuncelle = UserProfileChangeRequest.Builder()
@@ -262,9 +291,29 @@ class HesapAyarlari : AppCompatActivity(),MyListenerHesapAyarlari {
                 override fun onComplete(p0: Task<Void>) {
                     progresbarGizle()
                     if(p0.isSuccessful){
-                        myDialogFragment.setAciklama("kullanici adiniz guncellendi")
-                        myDialogFragment.show(supportFragmentManager,"frag")
-                        setKullaniciBilgileri()
+
+
+                        FirebaseDatabase.getInstance().reference
+                            .child("kullanici")
+                            .child(kullanici.uid)
+                            .child("isim")
+                            .setValue(etKullaniciAdi.text.toString())
+                            .addOnCompleteListener(object : OnCompleteListener<Void>{
+
+                                override fun onComplete(p0: Task<Void>) {
+
+                                    if(p0.isSuccessful){
+
+                                    }else{
+                                        myDialogFragment.setAciklama("kullanici adiniz guncellenirken bir hata oldu")
+                                        myDialogFragment.show(supportFragmentManager,"frag-ErrorDatabes")
+                                    }
+
+
+                                }
+
+                            })
+
                     }else{
                         myDialogFragment.setAciklama("kullanici adiniz guncellenirken bir hata oldu")
                         myDialogFragment.show(supportFragmentManager,"frag")
@@ -279,10 +328,43 @@ class HesapAyarlari : AppCompatActivity(),MyListenerHesapAyarlari {
         if(kullanici == null){
             cikisYap()
         }else{
-
+            progresbarGoster()
             etKullaniciAdi.setText(kullanici.displayName)
-            etTelefonNumarasi.setText("simdilik yok")
             etMail.setText(kullanici.email)
+
+            var reference = FirebaseDatabase.getInstance().reference
+
+            var sorgu = reference
+                .child("kullanici")
+                .orderByKey()
+                .equalTo(kullanici.uid)
+
+            sorgu.addListenerForSingleValueEvent(object : ValueEventListener{
+
+
+                override fun onCancelled(p0: DatabaseError) {
+
+
+                    progresbarGizle()
+                }
+
+                override fun onDataChange(p0: DataSnapshot) {
+
+                    for(snapshot in p0.children){
+                        var okunanKullanici = snapshot.getValue(Kullanici::class.java)
+
+                        etTelefonNumarasi.setText(okunanKullanici?.telefon)
+
+
+
+                    }
+                    progresbarGizle()
+
+                }
+
+
+            })
+
 
 
         }

@@ -22,6 +22,8 @@ import kotlinx.android.synthetic.main.dialog_fragment_kayit_ekrani.*
 import com.facebook.appevents.AppEventsLogger
 import com.facebook.login.LoginResult
 import com.google.firebase.auth.FacebookAuthProvider
+import com.google.firebase.database.FirebaseDatabase
+import com.halilkaya.loginandregisterapp.Model.Kullanici
 
 
 class GirisEkrani : AppCompatActivity(),MyListenerGirisEkrani {
@@ -96,7 +98,7 @@ class GirisEkrani : AppCompatActivity(),MyListenerGirisEkrani {
 
         }
 
-     
+
 
 
     }
@@ -106,6 +108,7 @@ class GirisEkrani : AppCompatActivity(),MyListenerGirisEkrani {
 
         var credential = FacebookAuthProvider.getCredential(result?.token!!)
 
+
         FirebaseAuth.getInstance().signInWithCredential(credential)
             .addOnCompleteListener(object : OnCompleteListener<AuthResult>{
 
@@ -113,9 +116,43 @@ class GirisEkrani : AppCompatActivity(),MyListenerGirisEkrani {
                 override fun onComplete(p0: Task<AuthResult>) {
                     progresbarGizle()
                     if(p0.isSuccessful){
-                        var intent = Intent(this@GirisEkrani, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
+
+                        var veritabaninaEklenecekKullanici = Kullanici()
+                        veritabaninaEklenecekKullanici.isim = p0.result?.user?.displayName
+                        veritabaninaEklenecekKullanici.kullanici_id = p0.result?.user?.uid
+                        veritabaninaEklenecekKullanici.telefon = ""
+                        veritabaninaEklenecekKullanici.seviye = ""
+                        veritabaninaEklenecekKullanici.profil_resmi = ""
+
+
+                        FirebaseDatabase.getInstance().reference
+                            .child("kullanici")
+                            .child(p0.result?.user?.uid.toString())
+                            .setValue(veritabaninaEklenecekKullanici)
+                            .addOnCompleteListener(object : OnCompleteListener<Void>{
+
+                                override fun onComplete(p0: Task<Void>) {
+
+                                    if(p0.isSuccessful){
+
+                                        var intent = Intent(this@GirisEkrani, MainActivity::class.java)
+                                        startActivity(intent)
+                                        finish()
+
+                                    }else{
+
+                                        var myDialogFragment = MyDialogFragment()
+                                        myDialogFragment.setAciklama("kayitta hata oldu: ${p0.exception?.message}")
+                                        myDialogFragment.show(supportFragmentManager,"frag-FacebookErrorDatabes")
+
+                                    }
+
+                                }
+
+                            })
+
+
+
 
 
                     }else{

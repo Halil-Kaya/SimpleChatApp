@@ -13,7 +13,9 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.FirebaseDatabase
 import com.halilkaya.loginandregisterapp.Fragments.MyDialogFragment
+import com.halilkaya.loginandregisterapp.Model.Kullanici
 import kotlinx.android.synthetic.main.activity_kayit_ekrani.*
 
 class KayitEkrani : AppCompatActivity(),MyListenerKayitEkrani {
@@ -80,7 +82,36 @@ class KayitEkrani : AppCompatActivity(),MyListenerKayitEkrani {
                     progresbarGizle()
                     if(p0.isSuccessful){
 
-                        onaylamaMailiGonder(p0.result?.user)
+                        var veritabaninaEklenecekKullanici = Kullanici()
+                        veritabaninaEklenecekKullanici.isim = etMail.text.toString().substring(0,etMail.text.toString().indexOf('@'))
+                        veritabaninaEklenecekKullanici.kullanici_id = FirebaseAuth.getInstance().currentUser?.uid
+                        veritabaninaEklenecekKullanici.profil_resmi = ""
+                        veritabaninaEklenecekKullanici.seviye = ""
+                        veritabaninaEklenecekKullanici.telefon = ""
+
+                        FirebaseDatabase.getInstance().reference
+                            .child("kullanici")
+                            .child(FirebaseAuth.getInstance().currentUser?.uid+"")
+                            .setValue(veritabaninaEklenecekKullanici)
+                            .addOnCompleteListener(object : OnCompleteListener<Void>{
+
+                                override fun onComplete(task: Task<Void>) {
+
+                                    if(task.isSuccessful){
+
+
+                                        onaylamaMailiGonder(p0.result?.user)
+
+                                    }else{
+
+
+                                    }
+
+                                }
+
+                            })
+
+
 
                     }else{
 
@@ -110,7 +141,7 @@ class KayitEkrani : AppCompatActivity(),MyListenerKayitEkrani {
 
                         if(p0.isSuccessful){
                             var myDialogFragmentKayitEkrani = MyDialogFragmentKayitEkrani()
-                            myDialogFragmentKayitEkrani.show(supportFragmentManager,"frag")
+                            myDialogFragmentKayitEkrani.show(supportFragmentManager,"frag-succcess")
 
                         }else{
 
