@@ -114,17 +114,20 @@
         app:layout_constraintTop_toTopOf="@+id/etKullaniciAdi"
         app:srcCompat="@drawable/user" />
 
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/imgProfilResmi"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:src="@drawable/ic_launcher_foreground"
         app:layout_constraintBottom_toBottomOf="@+id/etSifre"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/etTelefonNumarasi"
         app:layout_constraintTop_toTopOf="@+id/etKullaniciAdi"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
+        app:civ_border_width="2dp"
+        app:civ_border_color="@color/colorAccent"/>
+
+
 
     <ImageView
         android:id="@+id/imageView8"
