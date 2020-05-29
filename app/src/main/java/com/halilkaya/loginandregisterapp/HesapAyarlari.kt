@@ -682,6 +682,7 @@ class MyDialogFragmentProfilResmi() : DialogFragment(){
         return view
     }
 
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -709,6 +710,8 @@ class MyDialogFragmentProfilResmi() : DialogFragment(){
         mProfilResmiListener = activity as onProfilResmiListener
         super.onAttach(context)
     }
+
+
 
 
 }
