@@ -18,6 +18,7 @@ class AcilisEkrani : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_acilis_ekrani)
         initAuthStateListener()
+        
 
 
 

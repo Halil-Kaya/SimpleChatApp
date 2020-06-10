@@ -33,6 +33,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'com.google.android.support:wearable:2.7.0'
     implementation 'androidx.wear:wear:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0'
     compile('com.github.thekhaeng:pushdown-anim-click:1.1.1') {
         exclude group: 'com.android.support'
     }

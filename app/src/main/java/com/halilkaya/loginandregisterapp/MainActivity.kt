@@ -20,8 +20,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initAuthStateListener()
+        init()
 
 
+    }
+
+    fun init(){
 
         btnCikisYap.setOnClickListener {
             cikisYap()
@@ -33,6 +37,12 @@ class MainActivity : AppCompatActivity() {
             var intent = Intent(this,HesapAyarlari::class.java)
             startActivity(intent)
         }
+
+        btnSohbetOdasi.setOnClickListener {
+            var intent = Intent(this,SohbetOdalariActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
 

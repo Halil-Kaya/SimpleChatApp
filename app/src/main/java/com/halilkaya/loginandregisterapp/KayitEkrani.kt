@@ -86,7 +86,7 @@ class KayitEkrani : AppCompatActivity(),MyListenerKayitEkrani {
                         veritabaninaEklenecekKullanici.isim = etMail.text.toString().substring(0,etMail.text.toString().indexOf('@'))
                         veritabaninaEklenecekKullanici.kullanici_id = FirebaseAuth.getInstance().currentUser?.uid
                         veritabaninaEklenecekKullanici.profil_resmi = ""
-                        veritabaninaEklenecekKullanici.seviye = ""
+                        veritabaninaEklenecekKullanici.seviye = "5"
                         veritabaninaEklenecekKullanici.telefon = ""
 
                         FirebaseDatabase.getInstance().reference

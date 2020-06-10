@@ -44,4 +44,15 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <Button
+        android:id="@+id/btnSohbetOdasi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="SohbetOdalari"
+        app:layout_constraintBottom_toTopOf="@+id/btnHesapAyarlari"
+        app:layout_constraintEnd_toEndOf="@+id/btnHesapAyarlari"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="@+id/btnHesapAyarlari" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <EditText
+        android:id="@+id/etSohbetAdi"
+        android:layout_width="243dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="Sohbet Odasinin Adini Giriniz"
+        android:inputType="textPersonName"
+        android:textColorHint="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvKullaniciSeviyesi" />
+
+    <SeekBar
+        android:id="@+id/sbSeviye"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:max="10"
+        app:layout_constraintEnd_toEndOf="@+id/etSohbetAdi"
+        app:layout_constraintStart_toStartOf="@+id/etSohbetAdi"
+        app:layout_constraintTop_toBottomOf="@+id/etSohbetAdi" />
+
+    <TextView
+        android:id="@+id/tvSeviye"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="0"
+        android:textSize="22dp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="@+id/sbSeviye"
+        app:layout_constraintStart_toStartOf="@+id/sbSeviye"
+        app:layout_constraintTop_toBottomOf="@+id/sbSeviye" />
+
+    <Button
+        android:id="@+id/btnSohbetOdasiOlustur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp"
+        android:text="Olustur"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/sbSeviye"
+        app:layout_constraintTop_toBottomOf="@+id/tvSeviye" />
+
+    <TextView
+        android:id="@+id/tvKullaniciSeviyesi"
+        android:layout_width="164dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="16dp"
+        android:text="Sizin Seviyeniz: "
+        android:textSize="18dp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="@+id/etSohbetAdi"
+        app:layout_constraintStart_toStartOf="@+id/etSohbetAdi"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
