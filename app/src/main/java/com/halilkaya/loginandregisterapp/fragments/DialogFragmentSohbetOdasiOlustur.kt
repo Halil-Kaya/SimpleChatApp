@@ -113,6 +113,9 @@ class DialogFragmentSohbetOdasiOlustur : DialogFragment() {
                         .child(mesajID.toString())
                         .setValue(karsilamaMesaji)
 
+                    //ana ekrani guncelliyorum
+                    (activity as SohbetOdalariActivity).init()
+
                     //ekrani kapatiyorum
                     dismiss()
 

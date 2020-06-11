@@ -1,11 +1,15 @@
 package com.halilkaya.loginandregisterapp.adapter
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -54,7 +58,7 @@ class SohbetOdasiAdapter(var myActivity:Context,var tumSohbetOdalari:ArrayList<S
         var tvSohbetOdasiSeviye = tek_satir_sohbet_odasi.tvSohbetOdasiSeviye
 
         fun setData(oAnKiSohbetOdasi:SohbetOdasi, position: Int){
-            init()
+            init(oAnKiSohbetOdasi)
             tvSohbetOdasiAdi.setText(oAnKiSohbetOdasi.sohbet_odasi_adi)
             tvSohbetOdasiMesajSayisi.setText(oAnKiSohbetOdasi.sohbet_odasi_mesajlari?.size.toString())
             tvSohbetOdasiSeviye.setText(oAnKiSohbetOdasi.seviye)
@@ -82,7 +86,6 @@ class SohbetOdasiAdapter(var myActivity:Context,var tumSohbetOdalari:ArrayList<S
                             Picasso.get().load(profilResmiUrl).resize(56,56).into(imgOlusturaninProfilResmi)
                             tvSohbetOdasiOlusturaninAdi.setText(kullaniciAdi)
 
-
                         }
 
                     }
@@ -94,9 +97,10 @@ class SohbetOdasiAdapter(var myActivity:Context,var tumSohbetOdalari:ArrayList<S
 
         }
 
-        fun init(){
+        fun init(oAnKiSohbetOdasi:SohbetOdasi){
+            var ref = FirebaseDatabase.getInstance().reference
 
-            //o sohbet odasini aciyorum
+            //tiklanilan sohbet odasini aciyorum
             tek_satir_sohbet_odasi.setOnClickListener{
 
             }
@@ -104,6 +108,41 @@ class SohbetOdasiAdapter(var myActivity:Context,var tumSohbetOdalari:ArrayList<S
 
             //sohbet odasini siliyorum
             btnSohbetOdasiniSil.setOnClickListener {
+
+
+                if(oAnKiSohbetOdasi.olusturan_id.equals(FirebaseAuth.getInstance().currentUser?.uid)){
+
+
+                    var myAlertDialog = AlertDialog.Builder(tek_satir_sohbet_odasi.context)
+                    myAlertDialog.setTitle("Sohbet Odasi Silinsin Mi")
+
+                    myAlertDialog.setPositiveButton("Evet Sil",object : DialogInterface.OnClickListener{
+
+                        override fun onClick(dialog: DialogInterface?, which: Int) {
+
+                            ref.child("sohbet_odasi")
+                                .child(oAnKiSohbetOdasi.sohbet_odasi_id)
+                                .removeValue()
+
+                            tumSohbetOdalari.remove(oAnKiSohbetOdasi)
+                            notifyDataSetChanged()
+
+                        }
+
+                    })
+
+                    myAlertDialog.setNegativeButton("Hayir Silme", object : DialogInterface.OnClickListener{
+
+                        override fun onClick(dialog: DialogInterface?, which: Int) {
+
+                        }
+
+
+                    })
+
+                    myAlertDialog.show()
+
+                }
 
             }
 

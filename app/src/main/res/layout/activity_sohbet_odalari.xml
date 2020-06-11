@@ -33,5 +33,11 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
 
+    <ProgressBar
+        android:id="@+id/myProgresBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_gravity="center"
+        android:layout_width="48dp"
+        android:layout_height="48dp" />
 
 </FrameLayout>

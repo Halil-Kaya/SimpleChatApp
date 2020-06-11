@@ -2,6 +2,7 @@ package com.halilkaya.loginandregisterapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -20,6 +21,7 @@ class SohbetOdalariActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sohbet_odalari)
+        progresbarGoster()
         init()
 
 
@@ -32,6 +34,7 @@ class SohbetOdalariActivity : AppCompatActivity() {
         fabtnYeniSohbetOdasi.setOnClickListener {
             var dialogFragmentSohbetOdasiOlustur = DialogFragmentSohbetOdasiOlustur()
             dialogFragmentSohbetOdasiOlustur.show(supportFragmentManager,"frag-sohbetOdasiOlustur")
+            progresbarGoster()
         }
     }
 
@@ -84,7 +87,7 @@ class SohbetOdalariActivity : AppCompatActivity() {
                 var myAdapter = SohbetOdasiAdapter(this@SohbetOdalariActivity,tumSohbetOdalari)
                 rvSohbetOdalari.adapter = myAdapter
                 rvSohbetOdalari.layoutManager = LinearLayoutManager(this@SohbetOdalariActivity,LinearLayoutManager.VERTICAL,false)
-
+                progresbarGizle()
 
             }
 
@@ -92,8 +95,15 @@ class SohbetOdalariActivity : AppCompatActivity() {
 
 
 
-
-
     }
+
+    fun progresbarGoster(){
+        myProgresBar.visibility = View.VISIBLE
+    }
+
+    fun progresbarGizle(){
+        myProgresBar.visibility = View.INVISIBLE
+    }
+
 
 }
