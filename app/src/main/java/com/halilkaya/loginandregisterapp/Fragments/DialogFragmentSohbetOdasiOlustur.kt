@@ -8,14 +8,23 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.SeekBar
 import android.widget.TextView
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.DialogFragment
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.halilkaya.loginandregisterapp.Model.Kullanici
+import com.halilkaya.loginandregisterapp.Model.SohbetMesaj
+import com.halilkaya.loginandregisterapp.Model.SohbetOdasi
 import com.halilkaya.loginandregisterapp.R
+import com.halilkaya.loginandregisterapp.SohbetOdalariActivity
+import kotlinx.android.synthetic.main.activity_sohbet_odalari.*
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class DialogFragmentSohbetOdasiOlustur : DialogFragment() {
 
@@ -60,6 +69,78 @@ class DialogFragmentSohbetOdasiOlustur : DialogFragment() {
 
         })
 
+        btnSohbetOdasiOlustur.setOnClickListener {
+
+            var rootLayout = (activity as SohbetOdalariActivity).rootLayout
+
+            if(etSohbetAdi.text.isNotEmpty()){
+
+
+                if(kullanicininSeviyesi > sbSeviyesi){
+
+                    var ref = FirebaseDatabase.getInstance().reference
+
+                    //sohbet odasi icin id aliyorum
+                    var sohbetOdasiID = ref.child("sohbet_odasi").push().key
+
+
+                    //yeni sohbet odasi olusturuyorum
+                    var yeniSohbetOdasi = SohbetOdasi()
+                    yeniSohbetOdasi.olusturan_id = FirebaseAuth.getInstance().currentUser?.uid!!
+                    yeniSohbetOdasi.seviye = sbSeviye.toString()
+                    yeniSohbetOdasi.sohbet_odasi_adi = etSohbetAdi.text.toString()
+                    yeniSohbetOdasi.sohbet_odasi_id = sohbetOdasiID.toString()
+
+                    //databese ekliyorm
+                    ref.child("sohbet_odasi")
+                        .child(sohbetOdasiID.toString())
+                        .setValue(yeniSohbetOdasi)
+
+                    //karsilama mesajı icin id olusturuyorum
+                    var mesajID = ref.child("sohbet_odasi")
+                        .child(sohbetOdasiID.toString())
+                        .child("sohbet_odasi_mesajlari")
+                        .push().key
+
+
+                    //karsilama mesajını olusturuyorum
+                    var karsilamaMesaji = SohbetMesaj()
+                    karsilamaMesaji.time = getTarih()
+                    karsilamaMesaji.mesaj = "hos geldin bravo six going dark"
+
+                    //karsilama mesajini ekliyorum
+                    ref.child("sohbet_odasi")
+                        .child(sohbetOdasiID.toString())
+                        .child("sohbet_odasi_mesajlari")
+                        .child(mesajID.toString())
+                        .setValue(karsilamaMesaji)
+
+                    //ekrani kapatiyorum
+                    dismiss()
+
+
+
+                }else{
+
+
+                    var snackbar = Snackbar.make(rootLayout,"Seviyen yetersiz",Snackbar.LENGTH_LONG)
+                    snackbar.show()
+
+                }
+
+
+            }else{
+
+                var snackbar = Snackbar.make(rootLayout,"Sohbet Odasinin adi bos olamaz",Snackbar.LENGTH_LONG)
+                snackbar.show()
+
+            }
+
+
+
+        }
+
+
 
     }
 
@@ -92,6 +173,13 @@ class DialogFragmentSohbetOdasiOlustur : DialogFragment() {
             })
 
 
+    }
+
+
+
+    fun getTarih():String{
+        var sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale("tr"))
+        return sdf.format(Date())
     }
 
 }

@@ -15,13 +15,10 @@ class SohbetOdalariActivity : AppCompatActivity() {
     }
 
     fun init(){
-
         fabtnYeniSohbetOdasi.setOnClickListener {
             var dialogFragmentSohbetOdasiOlustur = DialogFragmentSohbetOdasiOlustur()
             dialogFragmentSohbetOdasiOlustur.show(supportFragmentManager,"frag-sohbetOdasiOlustur")
-
         }
-
     }
 
 }
