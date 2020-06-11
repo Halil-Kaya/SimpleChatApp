@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Window
 import com.google.firebase.auth.FirebaseAuth
-import com.halilkaya.loginandregisterapp.Fragments.MyDialogFragment
 import kotlinx.android.synthetic.main.activity_acilis_ekrani.*
 
 class AcilisEkrani : AppCompatActivity() {

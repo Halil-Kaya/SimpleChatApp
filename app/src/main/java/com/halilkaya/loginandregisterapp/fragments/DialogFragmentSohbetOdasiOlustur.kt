@@ -1,4 +1,4 @@
-package com.halilkaya.loginandregisterapp.Fragments
+package com.halilkaya.loginandregisterapp.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.SeekBar
 import android.widget.TextView
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -16,15 +15,14 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.halilkaya.loginandregisterapp.Model.Kullanici
-import com.halilkaya.loginandregisterapp.Model.SohbetMesaj
-import com.halilkaya.loginandregisterapp.Model.SohbetOdasi
+import com.halilkaya.loginandregisterapp.model.Kullanici
+import com.halilkaya.loginandregisterapp.model.SohbetMesaj
+import com.halilkaya.loginandregisterapp.model.SohbetOdasi
 import com.halilkaya.loginandregisterapp.R
 import com.halilkaya.loginandregisterapp.SohbetOdalariActivity
 import kotlinx.android.synthetic.main.activity_sohbet_odalari.*
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 class DialogFragmentSohbetOdasiOlustur : DialogFragment() {
 
@@ -87,7 +85,7 @@ class DialogFragmentSohbetOdasiOlustur : DialogFragment() {
                     //yeni sohbet odasi olusturuyorum
                     var yeniSohbetOdasi = SohbetOdasi()
                     yeniSohbetOdasi.olusturan_id = FirebaseAuth.getInstance().currentUser?.uid!!
-                    yeniSohbetOdasi.seviye = sbSeviye.toString()
+                    yeniSohbetOdasi.seviye = sbSeviyesi.toString()
                     yeniSohbetOdasi.sohbet_odasi_adi = etSohbetAdi.text.toString()
                     yeniSohbetOdasi.sohbet_odasi_id = sohbetOdasiID.toString()
 

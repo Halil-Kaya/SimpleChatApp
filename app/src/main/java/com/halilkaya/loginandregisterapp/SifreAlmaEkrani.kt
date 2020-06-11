@@ -11,7 +11,7 @@ import androidx.fragment.app.DialogFragment
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
-import com.halilkaya.loginandregisterapp.Fragments.MyDialogFragment
+import com.halilkaya.loginandregisterapp.fragments.MyDialogFragment
 import kotlinx.android.synthetic.main.activity_sifre_alma_ekrani.*
 
 class SifreAlmaEkrani : AppCompatActivity(),MyListener {

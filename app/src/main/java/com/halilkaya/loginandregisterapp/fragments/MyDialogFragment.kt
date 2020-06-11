@@ -1,4 +1,4 @@
-package com.halilkaya.loginandregisterapp.Fragments
+package com.halilkaya.loginandregisterapp.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

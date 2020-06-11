@@ -13,12 +13,9 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.contentValuesOf
 import androidx.fragment.app.DialogFragment
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.OnSuccessListener
@@ -33,13 +30,11 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
-import com.halilkaya.loginandregisterapp.Fragments.MyDialogFragment
-import com.halilkaya.loginandregisterapp.Model.Kullanici
+import com.halilkaya.loginandregisterapp.fragments.MyDialogFragment
+import com.halilkaya.loginandregisterapp.model.Kullanici
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_hesap_ayarlari.*
-import kotlinx.android.synthetic.main.dialog_fragment_design.*
 import java.io.ByteArrayOutputStream
-import java.security.AuthProvider
 
 class HesapAyarlari : AppCompatActivity(),MyListenerHesapAyarlari,onProfilResmiListener {
 

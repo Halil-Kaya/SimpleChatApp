@@ -1,4 +1,4 @@
-package com.halilkaya.loginandregisterapp.Model
+package com.halilkaya.loginandregisterapp.model
 
 class SohbetOdasi {
 

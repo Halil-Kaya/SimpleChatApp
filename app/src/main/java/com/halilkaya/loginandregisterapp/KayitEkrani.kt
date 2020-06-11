@@ -14,8 +14,8 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
-import com.halilkaya.loginandregisterapp.Fragments.MyDialogFragment
-import com.halilkaya.loginandregisterapp.Model.Kullanici
+import com.halilkaya.loginandregisterapp.fragments.MyDialogFragment
+import com.halilkaya.loginandregisterapp.model.Kullanici
 import kotlinx.android.synthetic.main.activity_kayit_ekrani.*
 
 class KayitEkrani : AppCompatActivity(),MyListenerKayitEkrani {

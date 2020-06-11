@@ -15,15 +15,12 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.ktx.Firebase
-import com.halilkaya.loginandregisterapp.Fragments.MyDialogFragment
+import com.halilkaya.loginandregisterapp.fragments.MyDialogFragment
 import kotlinx.android.synthetic.main.activity_giris_ekrani.*
-import kotlinx.android.synthetic.main.dialog_fragment_kayit_ekrani.*
-import com.facebook.appevents.AppEventsLogger
 import com.facebook.login.LoginResult
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.database.FirebaseDatabase
-import com.halilkaya.loginandregisterapp.Model.Kullanici
+import com.halilkaya.loginandregisterapp.model.Kullanici
 
 
 class GirisEkrani : AppCompatActivity(),MyListenerGirisEkrani {
