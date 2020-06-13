@@ -21,20 +21,18 @@ class SohbetOdalariActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sohbet_odalari)
-        progresbarGoster()
         init()
-
-
+        
     }
 
     fun init(){
-
+        progresbarGoster()
         tumSohbetOdalariniGetir()
 
         fabtnYeniSohbetOdasi.setOnClickListener {
             var dialogFragmentSohbetOdasiOlustur = DialogFragmentSohbetOdasiOlustur()
             dialogFragmentSohbetOdasiOlustur.show(supportFragmentManager,"frag-sohbetOdasiOlustur")
-            progresbarGoster()
+
         }
     }
 

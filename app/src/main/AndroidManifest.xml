@@ -20,7 +20,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SohbetOdalariActivity"></activity>
+        <activity android:windowSoftInputMode="adjustPan"
+            android:name=".MesajlarActivity"></activity>
+        <activity android:windowSoftInputMode="adjustResize"
+            android:name=".SohbetOdalariActivity" />
         <activity android:name=".HesapAyarlari" />
 
         <meta-data

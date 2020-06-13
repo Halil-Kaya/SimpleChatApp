@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@android:color/transparent"
+    android:background="@color/colorTekSatirSohbetOdasi"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/transparent">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgOlusturaninProfilResmi"
@@ -29,6 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
+            android:textColor="@android:color/white"
             android:text="Sohbet Adi"
             android:textSize="22sp"
             android:textStyle="bold"
@@ -48,6 +45,7 @@
         <TextView
             android:id="@+id/tvSohbetOdasiOlusturaninAdi"
             android:layout_width="wrap_content"
+            android:textColor="@android:color/white"
             android:layout_height="wrap_content"
             android:text="Olusturanın Adı"
             app:layout_constraintBottom_toBottomOf="@+id/imgOlusturaninProfilResmi"
@@ -59,6 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
+            android:textColor="@android:color/white"
             android:text="0"
             app:layout_constraintBottom_toBottomOf="@+id/tvSohbetOdasiOlusturaninAdi"
             app:layout_constraintEnd_toStartOf="@+id/btnSohbetOdasiniSil"
@@ -70,11 +69,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="Seviye"
+            android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="@+id/tvSohbetOdasiOlusturaninAdi"
             app:layout_constraintStart_toEndOf="@+id/tvSohbetOdasiOlusturaninAdi"
             app:layout_constraintTop_toTopOf="@+id/tvSohbetOdasiOlusturaninAdi" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

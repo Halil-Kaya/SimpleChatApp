@@ -3,21 +3,27 @@ package com.halilkaya.loginandregisterapp.adapter
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.halilkaya.loginandregisterapp.MesajlarActivity
 import com.halilkaya.loginandregisterapp.R
+import com.halilkaya.loginandregisterapp.SohbetOdalariActivity
 import com.halilkaya.loginandregisterapp.model.Kullanici
 import com.halilkaya.loginandregisterapp.model.SohbetOdasi
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_sohbet_odalari.*
 import kotlinx.android.synthetic.main.tek_sohbet_odasi.view.*
 
 class SohbetOdasiAdapter(var myActivity:Context,var tumSohbetOdalari:ArrayList<SohbetOdasi>) : RecyclerView.Adapter<SohbetOdasiAdapter.MyViewHolder>(){
@@ -49,7 +55,7 @@ class SohbetOdasiAdapter(var myActivity:Context,var tumSohbetOdalari:ArrayList<S
 
     inner class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
 
-        var tek_satir_sohbet_odasi = itemView as CardView
+        var tek_satir_sohbet_odasi = itemView as ConstraintLayout
         var imgOlusturaninProfilResmi = tek_satir_sohbet_odasi.imgOlusturaninProfilResmi
         var tvSohbetOdasiAdi = tek_satir_sohbet_odasi.tvSohbetOdasiAdi
         var tvSohbetOdasiOlusturaninAdi = tek_satir_sohbet_odasi.tvSohbetOdasiOlusturaninAdi
@@ -103,6 +109,10 @@ class SohbetOdasiAdapter(var myActivity:Context,var tumSohbetOdalari:ArrayList<S
             //tiklanilan sohbet odasini aciyorum
             tek_satir_sohbet_odasi.setOnClickListener{
 
+                var intent = Intent(tek_satir_sohbet_odasi.context,MesajlarActivity::class.java)
+                intent.putExtra("sohbetID",oAnKiSohbetOdasi.sohbet_odasi_id)
+                (myActivity as SohbetOdalariActivity).startActivity(intent)
+
             }
 
 
@@ -142,7 +152,20 @@ class SohbetOdasiAdapter(var myActivity:Context,var tumSohbetOdalari:ArrayList<S
 
                     myAlertDialog.show()
 
+                }else{
+
+                    var rootLayout = (myActivity as SohbetOdalariActivity).rootLayout
+
+                    var snackbar = Snackbar.make(rootLayout,"Odayi sen olusturmadin", Snackbar.LENGTH_SHORT)
+                    snackbar.show()
+
                 }
+
+
+
+
+
+
 
             }
 

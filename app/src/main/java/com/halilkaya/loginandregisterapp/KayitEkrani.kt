@@ -140,6 +140,9 @@ class KayitEkrani : AppCompatActivity(),MyListenerKayitEkrani {
                     override fun onComplete(p0: Task<Void>) {
 
                         if(p0.isSuccessful){
+
+                            FirebaseAuth.getInstance().signOut()
+
                             var myDialogFragmentKayitEkrani = MyDialogFragmentKayitEkrani()
                             myDialogFragmentKayitEkrani.show(supportFragmentManager,"frag-succcess")
 

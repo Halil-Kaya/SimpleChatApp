@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/mavimesaj">
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgMesajProfilResmi"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="48dp"
+            android:src="@drawable/action_item_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/tvMesaj"
+            android:layout_width="274dp"
+            android:layout_height="42dp"
+
+            android:gravity="center"
+            android:text="MEsaj bu bir mesaj dir bu bir mesajdir"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/imgMesajProfilResmi"
+            app:layout_constraintTop_toTopOf="@+id/imgMesajProfilResmi"
+            app:layout_constraintVertical_bias="0.727"
+            tools:layout_editor_absoluteX="103dp" />
+
+        <TextView
+            android:id="@+id/tvTarih"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="28dp"
+            android:text="tarih"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/imgMesajProfilResmi"
+            app:layout_constraintStart_toStartOf="@+id/imgMesajProfilResmi"
+            app:layout_constraintTop_toBottomOf="@+id/imgMesajProfilResmi" />
+
+        <TextView
+            android:id="@+id/tvGondereninAdi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="28dp"
+            android:text="GondereninAdi"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tvMesaj" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
