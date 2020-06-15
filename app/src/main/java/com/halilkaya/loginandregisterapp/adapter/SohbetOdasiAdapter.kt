@@ -111,6 +111,9 @@ class SohbetOdasiAdapter(var myActivity:Context,var tumSohbetOdalari:ArrayList<S
 
                 var intent = Intent(tek_satir_sohbet_odasi.context,MesajlarActivity::class.java)
                 intent.putExtra("sohbetID",oAnKiSohbetOdasi.sohbet_odasi_id)
+                intent.putExtra("sohbetOdasiAdi",oAnKiSohbetOdasi.sohbet_odasi_adi)
+                intent.putExtra("sohbetOdasiSeviye",oAnKiSohbetOdasi.seviye)
+
                 (myActivity as SohbetOdalariActivity).startActivity(intent)
 
             }

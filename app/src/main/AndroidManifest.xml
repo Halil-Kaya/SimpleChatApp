@@ -20,8 +20,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:windowSoftInputMode="adjustPan"
-            android:name=".MesajlarActivity"></activity>
+        <activity android:name=".MesajlarActivity"
+            android:theme="@style/ChatBackground"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden"></activity>
         <activity android:windowSoftInputMode="adjustResize"
             android:name=".SohbetOdalariActivity" />
         <activity android:name=".HesapAyarlari" />

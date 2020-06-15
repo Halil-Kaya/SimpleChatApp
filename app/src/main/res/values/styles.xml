@@ -11,7 +11,11 @@
         <item name="android:windowTranslucentNavigation">true</item>
 
 
+
+
     </style>
+
+    <style name="ChatBackground" parent="AppTheme">     <item name="android:windowBackground">@drawable/background</item> </style>
 
 
 
