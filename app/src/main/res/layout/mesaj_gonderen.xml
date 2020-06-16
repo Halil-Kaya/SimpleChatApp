@@ -24,17 +24,17 @@
 
         <TextView
             android:id="@+id/tvMesaj"
-            android:layout_width="248dp"
-            android:layout_height="37dp"
-
-            android:layout_marginStart="16dp"
+            android:layout_width="256dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="16dp"
             android:gravity="center"
             android:text="MEsaj bu bir mesaj dir bu bir mesajdir"
             android:textColor="@android:color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/imgMesajProfilResmi"
+            app:layout_constraintBottom_toTopOf="@+id/tvGondereninAdi"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imgMesajProfilResmi"
-            app:layout_constraintVertical_bias="0.533" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvTarih"
@@ -52,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
-            android:layout_marginBottom="28dp"
+            android:layout_marginBottom="52dp"
             android:text="GondereninAdi"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

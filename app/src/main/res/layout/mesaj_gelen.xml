@@ -24,19 +24,19 @@
 
     <TextView
         android:id="@+id/tvMesaj"
-        android:layout_width="wrap_content"
+        android:layout_width="236dp"
         android:layout_height="wrap_content"
-
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="16dp"
         android:gravity="center"
         android:text="MEsaj bu bir mesaj dir bu bir mesajdir"
         android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/imgMesajProfilResmi"
+        app:layout_constraintBottom_toTopOf="@+id/tvGondereninAdi"
         app:layout_constraintStart_toEndOf="@+id/imgMesajProfilResmi"
-        app:layout_constraintTop_toTopOf="@+id/imgMesajProfilResmi"
-        app:layout_constraintVertical_bias="0.727" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+    <TextView
             android:id="@+id/tvTarih"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -51,13 +51,11 @@
         android:id="@+id/tvGondereninAdi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="52dp"
         android:text="GondereninAdi"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
