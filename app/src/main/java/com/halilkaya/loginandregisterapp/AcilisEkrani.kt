@@ -5,7 +5,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Window
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.iid.InstanceIdResult
 import kotlinx.android.synthetic.main.activity_acilis_ekrani.*
 
 class AcilisEkrani : AppCompatActivity() {
@@ -17,7 +22,6 @@ class AcilisEkrani : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_acilis_ekrani)
         initAuthStateListener()
-        
 
 
 
@@ -39,6 +43,8 @@ class AcilisEkrani : AppCompatActivity() {
 
 
     }
+
+
 
 
 

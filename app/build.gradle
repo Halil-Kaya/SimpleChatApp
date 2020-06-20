@@ -26,7 +26,8 @@ android {
 
 }
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.gms.google-services'  // Google Services plugin
+
 
 dependencies {
     implementation 'com.google.android.gms:play-services-wearable:17.0.0'
@@ -46,6 +47,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth-ktx:19.3.1'
     implementation 'com.google.firebase:firebase-database-ktx:19.3.0'
     implementation 'com.google.firebase:firebase-storage-ktx:19.1.1'
+    implementation 'com.google.firebase:firebase-messaging:20.2.1'
+
 
 
     //circle imageView
@@ -53,6 +56,12 @@ dependencies {
 
     //Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.6.0'
+
+    //gson
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

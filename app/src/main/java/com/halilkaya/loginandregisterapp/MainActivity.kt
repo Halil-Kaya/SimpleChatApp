@@ -5,9 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.iid.InstanceIdResult
 import com.google.firebase.ktx.Firebase
 import com.thekhaeng.pushdownanim.PushDownAnim
 import kotlinx.android.synthetic.main.activity_main.*
@@ -21,9 +26,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         initAuthStateListener()
         init()
+        initFCM()
+
+        //bildirim kismindan tiklarsa onu mesajlar kismina aticam
+        getPendingIntent()
 
 
     }
+
+
 
     fun init(){
 
@@ -45,6 +56,18 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    fun getPendingIntent(){
+
+        var gelenIntent = intent
+
+        if(gelenIntent.hasExtra("sohbet_odasi_id")){
+            var intent = Intent(this,MesajlarActivity::class.java)
+            intent.putExtra("sohbetID",gelenIntent.getStringExtra("sohbet_odasi_id"))
+            startActivity(intent)
+        }
+
+
+    }
 
     override fun onStart() {
         FirebaseAuth.getInstance().addAuthStateListener(myAuthStateListener)
@@ -79,6 +102,22 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    fun initFCM(){
+        var ref = FirebaseDatabase.getInstance().reference
+        FirebaseInstanceId.getInstance().instanceId.addOnCompleteListener(object :
+            OnCompleteListener<InstanceIdResult> {
+            override fun onComplete(p0: Task<InstanceIdResult>) {
+                var newToken = p0.result?.token
+                ref.child("kullanici")
+                    .child(FirebaseAuth.getInstance().currentUser?.uid.toString())
+                    .child("mesaj_token")
+                    .setValue(newToken)
+            }
+        })
+
+
+
+    }
 
 
     fun kullaniciKontrolEt(){

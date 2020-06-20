@@ -109,22 +109,20 @@ class SohbetOdasiAdapter(var myActivity:Context,var tumSohbetOdalari:ArrayList<S
             //tiklanilan sohbet odasini aciyorum
             tek_satir_sohbet_odasi.setOnClickListener{
 
+                kullaniciyiSohbetOdasinaKaydet(oAnKiSohbetOdasi)
+
                 var intent = Intent(tek_satir_sohbet_odasi.context,MesajlarActivity::class.java)
                 intent.putExtra("sohbetID",oAnKiSohbetOdasi.sohbet_odasi_id)
                 intent.putExtra("sohbetOdasiAdi",oAnKiSohbetOdasi.sohbet_odasi_adi)
                 intent.putExtra("sohbetOdasiSeviye",oAnKiSohbetOdasi.seviye)
-
                 (myActivity as SohbetOdalariActivity).startActivity(intent)
 
             }
 
-
             //sohbet odasini siliyorum
             btnSohbetOdasiniSil.setOnClickListener {
 
-
                 if(oAnKiSohbetOdasi.olusturan_id.equals(FirebaseAuth.getInstance().currentUser?.uid)){
-
 
                     var myAlertDialog = AlertDialog.Builder(tek_satir_sohbet_odasi.context)
                     myAlertDialog.setTitle("Sohbet Odasi Silinsin Mi")
@@ -139,17 +137,13 @@ class SohbetOdasiAdapter(var myActivity:Context,var tumSohbetOdalari:ArrayList<S
 
                             tumSohbetOdalari.remove(oAnKiSohbetOdasi)
                             notifyDataSetChanged()
-
                         }
 
                     })
-
                     myAlertDialog.setNegativeButton("Hayir Silme", object : DialogInterface.OnClickListener{
 
                         override fun onClick(dialog: DialogInterface?, which: Int) {
-
                         }
-
 
                     })
 
@@ -158,19 +152,24 @@ class SohbetOdasiAdapter(var myActivity:Context,var tumSohbetOdalari:ArrayList<S
                 }else{
 
                     var rootLayout = (myActivity as SohbetOdalariActivity).rootLayout
-
                     var snackbar = Snackbar.make(rootLayout,"Odayi sen olusturmadin", Snackbar.LENGTH_SHORT)
                     snackbar.show()
 
                 }
-
-
-
-
-
-
-
             }
+
+        }
+
+        fun kullaniciyiSohbetOdasinaKaydet(oAnKiSohbetOdasi:SohbetOdasi){
+
+
+            var ref = FirebaseDatabase.getInstance().reference
+            ref.child("sohbet_odasi")
+                .child(oAnKiSohbetOdasi.sohbet_odasi_id.toString())
+                .child("sohbet_odasindaki_kullanicilar")
+                .child(FirebaseAuth.getInstance().currentUser?.uid.toString())
+                .child("okunmamis_mesaj_sayisi")
+                .setValue(oAnKiSohbetOdasi.sohbet_odasi_mesajlari?.size.toString())
 
 
         }

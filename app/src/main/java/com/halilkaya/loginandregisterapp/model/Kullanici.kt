@@ -8,6 +8,7 @@ class Kullanici {
     var profil_resmi:String? = null
     var seviye:String? = null
     var kullanici_id:String? = null
+    var mesaj_token:String? = null
 
 
 
