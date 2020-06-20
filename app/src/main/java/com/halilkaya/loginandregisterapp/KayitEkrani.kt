@@ -21,9 +21,14 @@ import kotlinx.android.synthetic.main.activity_kayit_ekrani.*
 
 class KayitEkrani : AppCompatActivity(),MyListenerKayitEkrani {
 
+    companion object{
+        var kayitEkraniAcikMi = false
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kayit_ekrani)
+
 
         tvHesapVar.setOnClickListener {
 
@@ -186,7 +191,20 @@ class KayitEkrani : AppCompatActivity(),MyListenerKayitEkrani {
     }
 
 
+    override fun onStart() {
+        super.onStart()
+        kayitEkraniAcikMi = true
+    }
+
+    override fun onStop() {
+        super.onStop()
+        kayitEkraniAcikMi = false
+    }
+
+
 }
+
+
 
 
 interface MyListenerKayitEkrani{

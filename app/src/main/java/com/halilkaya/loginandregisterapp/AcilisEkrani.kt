@@ -55,6 +55,8 @@ class AcilisEkrani : AppCompatActivity() {
 
             override fun onAuthStateChanged(p0: FirebaseAuth) {
 
+                if(!KayitEkrani.kayitEkraniAcikMi){
+
                 var kullanici = p0.currentUser
                 if(kullanici != null){
 
@@ -63,8 +65,10 @@ class AcilisEkrani : AppCompatActivity() {
                     startActivity(intent,options.toBundle())
                     finish()
 
-
                 }
+
+            }
+
 
             }
 

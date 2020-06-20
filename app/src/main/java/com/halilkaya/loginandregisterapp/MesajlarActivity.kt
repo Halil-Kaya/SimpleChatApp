@@ -96,6 +96,9 @@ class MesajlarActivity : AppCompatActivity() {
                     .setValue(sohbetMesaj)
 
 
+                var mesaj = etMesaj.text.toString()
+                etMesaj.text.toString()
+
                 //retrofiti olusturuyorum
                 var retrofit = Retrofit.Builder()
                     .baseUrl(BASE_URL)
@@ -158,14 +161,13 @@ class MesajlarActivity : AppCompatActivity() {
                                                 var data = FCMModel.Data()
                                                 data.baslik = "Yeni Mesajiniz Var"
                                                 data.bildirimTuru = "Sohbet"
-                                                data.icerik = etMesaj.text.toString()
+                                                data.icerik = mesaj
                                                 data.sohbetOdasiId = sohbetOdasiID
 
                                                 var bildirim = FCMModel()
                                                 bildirim.data = data
                                                 bildirim.to = to
 
-                                                etMesaj.setText("")
 
                                                 //istegimi hazirliyorum fonksiyonumun ilki parametreler icin 2. si ise atacagim model
                                                 var request = myInterface.bildirimGonder(headers,bildirim)

@@ -79,15 +79,13 @@ class MesajlarAdapter(var myActivity:Context,var mesajlar:ArrayList<SohbetMesaj>
                         for(user in p0.children){
                             var kullanici = user.getValue(Kullanici::class.java)
                             tvGondereninAdi.setText(kullanici?.isim)
-                            Picasso.get().load(kullanici?.profil_resmi).resize(48,48).into(imgMesajProfilResmi)
+
+                            if(!kullanici?.profil_resmi.isNullOrEmpty()){
+                                Picasso.get().load(kullanici?.profil_resmi).resize(48,48).into(imgMesajProfilResmi)
+                            }
                         }
-
                     }
-
                 })
-
-
-
         }
 
 

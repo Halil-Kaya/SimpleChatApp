@@ -88,8 +88,9 @@ class SohbetOdasiAdapter(var myActivity:Context,var tumSohbetOdalari:ArrayList<S
 
                             var profilResmiUrl = user.getValue(Kullanici::class.java)?.profil_resmi
                             var kullaniciAdi = user.getValue(Kullanici::class.java)?.isim
-
-                            Picasso.get().load(profilResmiUrl).resize(56,56).into(imgOlusturaninProfilResmi)
+                            if(!profilResmiUrl.isNullOrEmpty()){
+                                Picasso.get().load(profilResmiUrl).resize(56,56).into(imgOlusturaninProfilResmi)
+                            }
                             tvSohbetOdasiOlusturaninAdi.setText(kullaniciAdi)
 
                         }
